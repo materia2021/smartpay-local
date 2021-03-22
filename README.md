@@ -43,6 +43,8 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 http://localhost:8080
-kubectl --namespace argocd get secret argocd-secret -o json | jq '.data | map_values(@base64d)'
+//the initial password is set to the name of the server pod
+kubectl --namespace argocd get pods
+
 
 ref https://kubernetes.io/docs/reference/kubectl/cheatsheet/

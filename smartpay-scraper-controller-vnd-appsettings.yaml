@@ -21,5 +21,5 @@ data:
         "grayLogsHost": "172.23.58.55",
         "grayLogsPort": "12202",
         "Environment" : "smartpay",
-        "registry": "localhost:5000/smartpay"
+        "registry": "localhost:5000/smartpay-scraper"
     }
