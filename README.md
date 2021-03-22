@@ -11,8 +11,8 @@ docker build -t smartpay-server:v1.0 .
 docker build -t smartpay-client:v1.0 .
 kubectl apply -k <path to folder kustomization.yaml is located> or you can use . if you are already on the folder
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
-docker build -t localhost:5000/smartpay-vnd-vsaci:latest --build-arg SCRAPER_NAME=smartpay-scraper-vnd-vsaci .
-docker push localhost:5000/smartpay-vnd-vsaci:latest
+docker build -t localhost:5000/smartpay-scraper-vnd-vsaci:latest --build-arg SCRAPER_NAME=smartpay-scraper-vnd-vsaci .
+docker push localhost:5000/smartpay-scraper-vnd-vsaci:latest
 
 Connect to our OpenVPN server to have access on our dev DB Service api.
 
