@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartpay-client
+  labels:
+    component: smartpay-client
+    module: smartpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smartpay-client
+  template:
+    metadata:
+      labels:
+        app: smartpay-client
+    spec:      
+      containers:
+      - name: smartpay-client
+        image: smartpay-client:v1.0
+        ports:
+          - containerPort: 4201
+            protocol: TCP
+        imagePullPolicy: IfNotPresent

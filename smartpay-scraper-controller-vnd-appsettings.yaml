@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smartpay-scraper-controller-vnd
+  labels:
+    module: smartpay
+data:
+  sysconfig.json: |
+    {
+        "hostname": "127.0.0.1",
+        "port": "8082",
+        "logFileName": "mslogs.log",
+        "logFileLocation": "logs",
+        "natsServers": ["nats://smartpay-nats-headless:4222"],
+        "namespace": "smartpay",
+        "currency" : "VND",
+        "requestTimeout": 3000,
+        "timeBeforeDelete": 5000,
+        "serverIdentifier": "smartpay-beta",
+        "grayLogsHost": "172.23.58.55",
+        "grayLogsPort": "12202",
+        "Environment" : "smartpay",
+        "registry": "localhost:5000/smartpay"
+    }

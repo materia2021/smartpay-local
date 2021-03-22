@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartpay-server
+  labels:
+    component: smartpay-server
+    module: smartpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smartpay-server
+  template:
+    metadata:
+      labels:
+        app: smartpay-server
+    spec:      
+      containers:
+      - name: smartpay-server
+        env:
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          value: "0"
+        image: smartpay-server:v1.0
+        ports:
+          - containerPort: 8082
+            protocol: TCP
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: config-volume
+            mountPath: usr/app/chenpay-server/configs/sysconfig.json
+            subPath: usr/app/chenpay-server/configs/sysconfig.json              
+      volumes:
+      - name: config-volume
+        configMap:
+          name: smartpay-server-settings
+          items:
+            - key: sysconfig.json
+              path: usr/app/chenpay-server/configs/sysconfig.json

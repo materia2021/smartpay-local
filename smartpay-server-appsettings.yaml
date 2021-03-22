@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smartpay-server-settings
+  labels:
+    module: smartpay
+data:
+  sysconfig.json: |
+    {
+      "hostname": "127.0.0.1",
+      "port": "8082",
+      "logFileName": "mslogs.log",
+      "logFileLocation": "logs",
+      "natsServers": "nats://smartpay-nats-headless:4222",
+      "natsTimeout": 30,
+      "namespace": "smartpay",
+      "requestTimeout": 3000,
+      "timeBeforeDelete": 5000,
+      "serverName" : "smartpay-beta",
+      "dbServiceAPI": "https://chenpay-dbservice-dev00-b0b341d88c89.s3dv.pw/chenpay",
+      "grayLogsHost": "172.23.58.55",
+      "grayLogsPort": "12202"
+    }

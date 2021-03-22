@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vnd-smartpay-controller
+  labels:
+    component: vnd-smartpay-controller
+    module: smartpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vnd-smartpay-controller
+  template:
+    metadata:
+      labels:
+        app: vnd-smartpay-controller
+    spec:      
+      containers:
+      - name: vnd-smartpay-controller
+        image: vnd-smartpay-controller:v1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: config-volume
+            mountPath: usr/app/chenpay/sysconfig.json
+            subPath: usr/app/chenpay/sysconfig.json
+        env:
+        - name:  MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath:  spec.nodeName      
+        - name:  PARENT_UID
+          valueFrom:
+            fieldRef:
+              fieldPath:  metadata.uid    
+        - name:  POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath:  metadata.name                
+      volumes:
+      - name: config-volume
+        configMap:
+          name: smartpay-scraper-controller-vnd
+          items:
+            - key: sysconfig.json
+              path: usr/app/chenpay/sysconfig.json

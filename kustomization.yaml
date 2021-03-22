@@ -1,0 +1,10 @@
+resources:
+- smartpay-server-appsettings.yaml
+- smartpay-scraper-controller-vnd-appsettings.yaml
+- smartpay-vnd-controller-deployment.yaml
+- smartpay-server-deployment.yaml
+- smartpay-client-deployment.yaml
+- smartpay-server-service.yaml
+- smartpay-client-service.yaml
+- smartpay-ingress.yaml
+- nats.yaml
