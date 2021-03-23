@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myr-smartpay-controller
+  labels:
+    component: myr-smartpay-controller
+    module: smartpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myr-smartpay-controller
+  template:
+    metadata:
+      labels:
+        app: myr-smartpay-controller
+    spec:      
+      containers:
+      - name: myr-smartpay-controller
+        image: myr-smartpay-controller:v1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: config-volume
+            mountPath: usr/app/chenpay/sysconfig.json
+            subPath: usr/app/chenpay/sysconfig.json
+        env:
+        - name:  MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath:  spec.nodeName      
+        - name:  PARENT_UID
+          valueFrom:
+            fieldRef:
+              fieldPath:  metadata.uid    
+        - name:  POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath:  metadata.name                
+      volumes:
+      - name: config-volume
+        configMap:
+          name: smartpay-scraper-controller-myr
+          items:
+            - key: sysconfig.json
+              path: usr/app/chenpay/sysconfig.json

@@ -2,6 +2,12 @@ resources:
 - smartpay-server-appsettings.yaml
 - smartpay-scraper-controller-vnd-appsettings.yaml
 - smartpay-vnd-controller-deployment.yaml
+- smartpay-scraper-controller-thb-appsettings.yaml
+- smartpay-thb-controller-deployment.yaml
+- smartpay-scraper-controller-idr-appsettings.yaml
+- smartpay-idr-controller-deployment.yaml
+- smartpay-scraper-controller-myr-appsettings.yaml
+- smartpay-myr-controller-deployment.yaml
 - smartpay-server-deployment.yaml
 - smartpay-client-deployment.yaml
 - smartpay-server-service.yaml
