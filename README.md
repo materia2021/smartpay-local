@@ -5,6 +5,8 @@ Important : Make sure you enable kubernetes and your port 80 is open
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
 kubectl create namespace smartpay
 kubectl label nodes docker-desktop node.s3dv.io/currency=<currency low case>
+//if you want to test other currency, you need to override the label node.s3dv.io/currency
+//kubectl label nodes docker-desktop node.s3dv.io/currency=<currency low case> --overwrite
 kubectl config set-context --current --namespace=smartpay
 
 //clone smartpay-scraper-controller repo then cd to it and run
