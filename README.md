@@ -14,7 +14,7 @@ npm run docker-build
 //clone smartpay-client repo then cd to it and run
 npm run docker-build
 
-kubectl apply -k <path to folder kustomization.yaml is located> or you can use . if you are already on the folder
+kubectl apply -k <path to folder where kustomization.yaml is located> or you can use . if you are already on the folder
 	
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
 
