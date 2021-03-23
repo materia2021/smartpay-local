@@ -6,24 +6,37 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl create namespace smartpay
 kubectl label nodes docker-desktop node.s3dv.io/currency=<currency low case>
 kubectl config set-context --current --namespace=smartpay
-docker build -t vnd-smartpay-controller:v1.0 .
-docker build -t smartpay-server:v1.0 .
-docker build -t smartpay-client:v1.0 .
+
+//clone smartpay-scraper-controller repo then cd to it and run
+npm run docker-build
+//clone smartpay-server repo then cd to it and run
+npm run docker-build
+//clone smartpay-client repo then cd to it and run
+npm run docker-build
+
 kubectl apply -k <path to folder kustomization.yaml is located> or you can use . if you are already on the folder
+	
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
-docker build -t localhost:5000/smartpay-scraper-vnd-vsaci:latest --build-arg SCRAPER_NAME=smartpay-scraper-vnd-vsaci .
-docker push localhost:5000/smartpay-scraper-vnd-vsaci:latest
+
+//clone smartpay-scraper-v2 repo then cd to it and run
+//you can also use your IDE to run this gradle task
+//gradlew.bat :module-name:dockerBuildAndPush
+gradlew.bat :smartpay-scraper-vnd-vacbi:dockerBuildAndPush
+
 
 Connect to our OpenVPN server to have access on our dev DB Service api.
 
 //sender nodejs app
-//install yarn first if you don't have npm -g install yarn
+//clone this repo https://github.com/materia2021/smartpay-sender.git
+//install yarn first if you don't have 
+npm -g install yarn
 //go to sender folder
 //modify transaction details inside index.js and run the ff commands
 yarn
 node index.js
 
 optional: 
+
 dashoard installation 
 
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
@@ -37,7 +50,7 @@ kubectl proxy
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 //login using token
 
-argo installation
+argocd installation
 
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
