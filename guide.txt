@@ -41,12 +41,12 @@ optional:
 
 dashoard installation 
 
-kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
-kubectl create serviceaccount dashboard-admin-sa
-kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa
-kubectl get secrets
+kubectl --namespace=kubernetes-dashboard apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+kubectl --namespace=kubernetes-dashboard create serviceaccount dashboard-admin-sa
+kubectl --namespace=kubernetes-dashboard create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa
+kubectl --namespace=kubernetes-dashboard get secrets
 //copy the secret name should be something like dashboard-admin-sa-token-*
-kubectl describe secret <secret name>
+kubectl --namespace=kubernetes-dashboard describe secret <secret name>
 //copy the token
 kubectl proxy
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
