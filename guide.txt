@@ -61,5 +61,7 @@ http://localhost:8080
 //the initial password for user admin is set to the name of the server pod should be something like argocd-server-*
 kubectl --namespace argocd get pods
 
+install octant (better than kubernetes dashboard)
+https://github.com/vmware-tanzu/octant
 
 ref https://kubernetes.io/docs/reference/kubectl/cheatsheet/
