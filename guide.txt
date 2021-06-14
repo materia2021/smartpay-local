@@ -29,7 +29,7 @@ gradlew.bat :smartpay-scraper-vnd-vacbi:dockerBuildAndPush
 Connect to our OpenVPN server to have access on our dev DB Service api.
 
 //sender nodejs app
-//clone this repo https://github.com/materia2021/smartpay-sender.git
+//clone this repo https://github.com/mrguamos/smartpay-sender.git
 //install yarn first if you don't have 
 npm -g install yarn
 //go to sender folder
